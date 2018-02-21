@@ -1,0 +1,3 @@
+model_checkpoint_path: "my_net.ckpt"
+all_model_checkpoint_paths: "..\\sounds_models_2\\model-850"
+all_model_checkpoint_paths: "my_net.ckpt"
