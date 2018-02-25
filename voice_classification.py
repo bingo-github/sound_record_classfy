@@ -327,66 +327,68 @@ def change_sound(wavfile, new_path, new_dirction='left', move_step=10, save=1):
     return audio
 
 
-# with g1.as_default():
-#     # 初始化变量
-#     init_1 = tf.global_variables_initializer()
-#     # 定义saver
-#     saver_1 = tf.train.Saver()
-#     print('out of sess')
-#     with tf.Session(graph=g1) as sess_1:
-#         sess_1.run(init_1)
-#         # saver.restore(sess, 'net_1/my_net.ckpt')
-#         print('in sess')
-#         batches = batch_iter(list(zip(train_x, train_y)), FLAGS.batch_size, FLAGS.num_epochs)
-#         for i, batch in enumerate(batches):
-#             i = i + 1
-#             x_batch, y_batch = zip(*batch)
-#             sess_1.run([optimizer_1], feed_dict={x_1: x_batch, y_1: y_batch, dropout_1: FLAGS.dropout_keep_prob})
-#             # 测试
-#             if i % FLAGS.evaluate_every == 0:
-#                 sess_1.run(tf.assign(lr_1, FLAGS.lr * (0.99 ** (i // FLAGS.evaluate_every))))
-#                 learning_rate_1 = sess_1.run(lr_1)
-#                 tr_acc_1, _loss_1 = sess_1.run([accuracy_1, cross_entropy_1], feed_dict={x_1: train_x, y_1: train_y, dropout_1: 1.0})
-#                 ts_acc_1 = sess_1.run(accuracy_1, feed_dict={x_1: test_x, y_1: test_y, dropout_1: 1.0})
-#                 print("Iter {}, loss_1 {:.5f}, tr_acc_1 {:.5f}, ts_acc_1 {:.5f}, lr {:.5f}".format(i, _loss_1, tr_acc_1, ts_acc_1,
-#                                                                                              learning_rate_1))
-#                 # 保存模型
-#                 if ts_acc_1 > 0.95:
-#                     path_1 = saver_1.save(sess_1, "sounds_models_1/model", global_step=i)
-#                     print("Saved model checkpoint to {}\n".format(path_1))
-#                     saver_1.save(sess_1, 'net_1/my_net.ckpt')
-#                     break
-#
-#
-# with g2.as_default():
-#     # 初始化变量
-#     init_2 = tf.global_variables_initializer()
-#     # 定义saver
-#     saver_2 = tf.train.Saver()
-#     print('out of sess')
-#     with tf.Session(graph=g2) as sess_2:
-#         sess_2.run(init_2)
-#         # saver_2.restore(sess, 'net_2/my_net.ckpt')
-#         print('in sess')
-#         batches = batch_iter(list(zip(train_x, train_y)), FLAGS.batch_size, FLAGS.num_epochs)
-#         for i, batch in enumerate(batches):
-#             i = i + 1
-#             x_batch, y_batch = zip(*batch)
-#             sess_2.run([optimizer_2], feed_dict={x_2: x_batch, y_2: y_batch, dropout_2: FLAGS.dropout_keep_prob})
-#             # 测试
-#             if i % FLAGS.evaluate_every == 0:
-#                 sess_2.run(tf.assign(lr_2, FLAGS.lr * (0.99 ** (i // FLAGS.evaluate_every))))
-#                 learning_rate_2 = sess_2.run(lr_2)
-#                 tr_acc_2, _loss_2 = sess_2.run([accuracy_2, cross_entropy_2], feed_dict={x_2: train_x, y_2: train_y, dropout_2: 1.0})
-#                 ts_acc_2 = sess_2.run(accuracy_2, feed_dict={x_2: test_x, y_2: test_y, dropout_2: 1.0})
-#                 print("Iter {}, loss_2 {:.5f}, tr_acc_2 {:.5f}, ts_acc_2 {:.5f}, lr {:.5f}".format(i, _loss_2, tr_acc_2, ts_acc_2,
-#                                                                                              learning_rate_2))
-#                 # 保存模型
-#                 if ts_acc_2 > 0.95:
-#                     path_2 = saver_2.save(sess_2, "sounds_models_2/model", global_step=i)
-#                     print("Saved model checkpoint to {}\n".format(path_2))
-#                     saver_2.save(sess_2, 'net_2/my_net.ckpt')
-#                     break
+'''
+with g1.as_default():
+    # 初始化变量
+    init_1 = tf.global_variables_initializer()
+    # 定义saver
+    saver_1 = tf.train.Saver()
+    print('out of sess')
+    with tf.Session(graph=g1) as sess_1:
+        sess_1.run(init_1)
+        # saver.restore(sess, 'net_1/my_net.ckpt')
+        print('in sess')
+        batches = batch_iter(list(zip(train_x, train_y)), FLAGS.batch_size, FLAGS.num_epochs)
+        for i, batch in enumerate(batches):
+            i = i + 1
+            x_batch, y_batch = zip(*batch)
+            sess_1.run([optimizer_1], feed_dict={x_1: x_batch, y_1: y_batch, dropout_1: FLAGS.dropout_keep_prob})
+            # 测试
+            if i % FLAGS.evaluate_every == 0:
+                sess_1.run(tf.assign(lr_1, FLAGS.lr * (0.99 ** (i // FLAGS.evaluate_every))))
+                learning_rate_1 = sess_1.run(lr_1)
+                tr_acc_1, _loss_1 = sess_1.run([accuracy_1, cross_entropy_1], feed_dict={x_1: train_x, y_1: train_y, dropout_1: 1.0})
+                ts_acc_1 = sess_1.run(accuracy_1, feed_dict={x_1: test_x, y_1: test_y, dropout_1: 1.0})
+                print("Iter {}, loss_1 {:.5f}, tr_acc_1 {:.5f}, ts_acc_1 {:.5f}, lr {:.5f}".format(i, _loss_1, tr_acc_1, ts_acc_1,
+                                                                                             learning_rate_1))
+                # 保存模型
+                if ts_acc_1 > 0.95:
+                    path_1 = saver_1.save(sess_1, "sounds_models_1/model", global_step=i)
+                    print("Saved model checkpoint to {}\n".format(path_1))
+                    saver_1.save(sess_1, 'net_1/my_net.ckpt')
+                    break
+
+
+with g2.as_default():
+    # 初始化变量
+    init_2 = tf.global_variables_initializer()
+    # 定义saver
+    saver_2 = tf.train.Saver()
+    print('out of sess')
+    with tf.Session(graph=g2) as sess_2:
+        sess_2.run(init_2)
+        # saver_2.restore(sess, 'net_2/my_net.ckpt')
+        print('in sess')
+        batches = batch_iter(list(zip(train_x, train_y)), FLAGS.batch_size, FLAGS.num_epochs)
+        for i, batch in enumerate(batches):
+            i = i + 1
+            x_batch, y_batch = zip(*batch)
+            sess_2.run([optimizer_2], feed_dict={x_2: x_batch, y_2: y_batch, dropout_2: FLAGS.dropout_keep_prob})
+            # 测试
+            if i % FLAGS.evaluate_every == 0:
+                sess_2.run(tf.assign(lr_2, FLAGS.lr * (0.99 ** (i // FLAGS.evaluate_every))))
+                learning_rate_2 = sess_2.run(lr_2)
+                tr_acc_2, _loss_2 = sess_2.run([accuracy_2, cross_entropy_2], feed_dict={x_2: train_x, y_2: train_y, dropout_2: 1.0})
+                ts_acc_2 = sess_2.run(accuracy_2, feed_dict={x_2: test_x, y_2: test_y, dropout_2: 1.0})
+                print("Iter {}, loss_2 {:.5f}, tr_acc_2 {:.5f}, ts_acc_2 {:.5f}, lr {:.5f}".format(i, _loss_2, tr_acc_2, ts_acc_2,
+                                                                                             learning_rate_2))
+                # 保存模型
+                if ts_acc_2 > 0.95:
+                    path_2 = saver_2.save(sess_2, "sounds_models_2/model", global_step=i)
+                    print("Saved model checkpoint to {}\n".format(path_2))
+                    saver_2.save(sess_2, 'net_2/my_net.ckpt')
+                    break
+'''
 
 
 ''' 进行识别 '''
